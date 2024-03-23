@@ -1,12 +1,33 @@
 import headphonesData from '@data/headphones.json';
 import star from '@assets/icons/interface_icons/star.svg';
 import style from './Main.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
+import { addProduct, increaseProductQuantity } from '@redux/basketSlice';
+import { Headphone } from '@type/interfaces/product.interface';
+import { useEffect } from 'react';
 
 export const Main = () => {
-  // console.log(headphones[0].img);
-
   const wiredHeadphones = headphonesData.slice(0, 6);
   const wirelessHeadpjones = headphonesData.slice(6);
+
+  const basket = useSelector((state: RootState) => state.basket.basketList);
+
+  const dispatch = useDispatch();
+
+  const addProductToBasket = (headphone: Headphone) => {
+    const existingProductIndex = basket.findIndex(
+      (product) => product.id === headphone.id
+    );
+
+    if (existingProductIndex !== -1) {
+      // Товар уже есть в корзине, увеличиваем его количество
+      dispatch(increaseProductQuantity(existingProductIndex));
+    } else {
+      // Товара нет в корзине, добавляем его
+      dispatch(addProduct(headphone));
+    }
+  };
 
   return (
     <main>
@@ -42,7 +63,12 @@ export const Main = () => {
                       <img src={star} alt="star" />
                       <div className={style.description__rate}>{item.rate}</div>
                     </div>
-                    <div className={style.description__button}>Купить</div>
+                    <div
+                      className={style.description__button}
+                      onClick={() => addProductToBasket(item)}
+                    >
+                      Купить
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -82,7 +108,12 @@ export const Main = () => {
                       <img src={star} alt="star" />
                       <div className={style.description__rate}>{item.rate}</div>
                     </div>
-                    <div className={style.description__button}>Купить</div>
+                    <div
+                      className={style.description__button}
+                      onClick={() => addProductToBasket(item)}
+                    >
+                      Купить
+                    </div>
                   </div>
                 </li>
               </ul>

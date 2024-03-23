@@ -5,62 +5,71 @@
     "title": "Apple BYZ S852I",
     "price": 2927,
     "old_price": 3527,
-    "rate": 4.7
+    "rate": 4.7,
+    "quantity": 1
   },
   {
     "id": 2,
     "img": "src/assets/images/products/apple_earpods_wired.png",
     "title": "Apple EarPods",
     "price": 2327,
-    "rate": 4.5
+    "rate": 4.5,
+    "quantity": 1
   },
   {
     "id": 3,
     "img": "src/assets/images/products/apple_earpods_case_wired.png",
     "title": "Apple EarPods",
     "price": 2327,
-    "rate": 4.5
+    "rate": 4.5,
+    "quantity": 1
   },
   {
     "id": 4,
     "img": "src/assets/images/products/apple_byz_wired.png",
     "title": "Apple BYZ S852I",
     "price": 2927,
-    "rate": 4.7
+    "rate": 4.7,
+    "quantity": 1
   },
   {
     "id": 5,
     "img": "src/assets/images/products/apple_earpods_wired.png",
     "title": "Apple EarPods",
     "price": 2327,
-    "rate": 4.5
+    "rate": 4.5,
+    "quantity": 1
   },
   {
     "id": 6,
     "img": "src/assets/images/products/apple_earpods_case_wired.png",
     "title": "Apple EarPods",
     "price": 2327,
-    "rate": 4.5
+    "rate": 4.5,
+    "quantity": 1
   },
   {
     "id": 7,
     "img": "src/assets/images/products/apple_earpods_wireless.png",
     "title": "Apple AirPods",
     "price": 9527,
-    "rate": 4.7
+    "rate": 4.7,
+    "quantity": 1
   },
   {
     "id": 8,
     "img": "src/assets/images/products/gerlax_wireless.png",
     "title": "GERLAX GH-04",
     "price": 6527,
-    "rate": 4.7
+    "rate": 4.7,
+    "quantity": 1
   },
   {
     "id": 9,
     "img": "src/assets/images/products/borofone_wireless.png",
     "title": "BOROFONE BO4",
     "price": 7527,
-    "rate": 4.7
+    "rate": 4.7,
+    "quantity": 1
   }
 ]
