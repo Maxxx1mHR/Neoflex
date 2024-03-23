@@ -1,0 +1,50 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2.9rem 2.7rem 3.2rem 2.9rem;
+  border-radius: 3rem 3rem 0 0;
+  background-color: $color-white;
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style-type: none;
+  min-height: 8.3rem;
+}
+
+.footer__item {
+  @include font($weight: 400);
+  // margin-bottom: 1rem;
+
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
+}
+
+.footer__language {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 11rem;
+}
+
+.footer__social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 12rem;
+}
+
+.language {
+  @include font($size: 1.5rem, $weight: 500, $color: $color-dark-grey);
+}
+
+.active {
+  color: $color-text;
+}

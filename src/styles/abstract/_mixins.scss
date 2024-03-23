@@ -1,0 +1,30 @@
+@mixin font($size: 1.7rem, $weight: 600, $color: $color-black) {
+  color: $color;
+  font-family: 'Montserrat', sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+}
+
+@mixin media-desktop {
+  @media (max-width: $desktop-width) {
+    @content;
+  }
+}
+
+@mixin media-laptop {
+  @media (max-width: $laptop-width) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
+}

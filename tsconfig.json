@@ -5,6 +5,17 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@redux/*": ["redux/*"],
+      "@components/*": ["components/*"],
+      "@type/*": ["types/*"],
+      "@helpers/*": ["helpers/*"],
+      "@styles/*": ["styles/*"],
+      "@assets/*": ["assets/*"],
+      "@service/*": ["service/*"],
+      "@data/*": ["data/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

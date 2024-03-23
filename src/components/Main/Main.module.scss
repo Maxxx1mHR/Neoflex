@@ -1,0 +1,89 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+
+.headphones__wired {
+  margin-bottom: 2.8rem;
+}
+.headphones__wireless {
+  margin-bottom: 2rem;
+}
+
+.headphones__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 35rem));
+  justify-content: center;
+  gap: 3rem;
+  list-style-type: none;
+}
+
+.headphones__item {
+  padding: 0rem 2rem 2.7rem 2rem;
+  border-radius: 3rem;
+  background-color: $color-white;
+}
+
+.wrapper__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30.6rem;
+}
+
+.headphone__image {
+  // display: block;
+  // margin: 0 auto;
+  // margin-bottom: 5.4rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+  @include font($size: 2rem, $color: $color-dark-text);
+}
+
+.description__item {
+}
+
+.description__list {
+  list-style-type: none;
+}
+
+.description__title {
+  @include font($color: $color-charcoal);
+}
+
+.wrapper__price {
+  position: relative;
+}
+
+.description__price_new {
+  @include font($color: $color-text);
+}
+
+.description__price_old {
+  position: absolute;
+  text-decoration: line-through;
+  @include font($size: 1.3rem, $color: $color-text-light);
+  left: 1rem;
+}
+
+.description__rate {
+  @include font($color: $color-dark-text);
+}
+.description__button {
+  @include font();
+}
+
+.description__line {
+  display: flex;
+  justify-content: space-between;
+  &:first-child {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.wrapper__rate {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
