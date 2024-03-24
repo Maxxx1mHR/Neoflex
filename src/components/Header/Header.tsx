@@ -3,6 +3,7 @@ import basket from '@assets/icons/interface_icons/basket.svg';
 import style from './Header.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const count = useSelector(
@@ -11,16 +12,18 @@ export const Header = () => {
 
   return (
     <header className={style.navigation}>
-      <div className="logo">qpick</div>
+      <Link to="/" className="logo">
+        qpick
+      </Link>
       <div className={style.wrapper}>
         <a href="#" className={style.link}>
           <span className={style.count}>2</span>
           <img src={favourite} alt="favourite" className={style.favourite} />
         </a>
-        <a href="#" className={style.link}>
+        <Link to="/basket" className={style.link}>
           {count >= 1 && <span className={style.count}>{count}</span>}
           <img src={basket} alt="basket" />
-        </a>
+        </Link>
       </div>
     </header>
   );

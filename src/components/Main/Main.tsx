@@ -30,7 +30,7 @@ export const Main = () => {
   };
 
   return (
-    <main>
+    <>
       <section className={style.headphones__wired}>
         <h2 className={style.title}>Наушники</h2>
         <ul className={style.headphones__list}>
@@ -121,6 +121,6 @@ export const Main = () => {
           ))}
         </ul>
       </section>
-    </main>
+    </>
   );
 };
