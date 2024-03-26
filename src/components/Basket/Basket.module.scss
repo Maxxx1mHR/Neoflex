@@ -24,6 +24,7 @@
   border-radius: 3rem;
   background-color: $color-white;
   height: 22rem;
+  max-width: 63rem;
   list-style-type: none;
 }
 
@@ -102,8 +103,15 @@
 }
 
 .description__item {
-  padding: 5.8rem 0 0 2.3rem;
+  display: flex;
+  justify-content: space-between;
+  // padding: 5.8rem 0 0 2.3rem;
   width: 42rem;
+  height: 100%;
+}
+
+.wrapper__description {
+  padding: 5.8rem 0 0 2.3rem;
 }
 
 .description__title {
@@ -124,6 +132,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+  // height: 100%;
 }
 
 .price {

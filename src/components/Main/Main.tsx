@@ -16,17 +16,16 @@ export const Main = () => {
   const dispatch = useDispatch();
 
   const addProductToBasket = (headphone: Headphone) => {
-    const existingProductIndex = basket.findIndex(
-      (product) => product.id === headphone.id
-    );
-
-    if (existingProductIndex !== -1) {
-      // Товар уже есть в корзине, увеличиваем его количество
-      dispatch(increaseProductQuantity(existingProductIndex));
-    } else {
-      // Товара нет в корзине, добавляем его
-      dispatch(addProduct(headphone));
-    }
+    // const existingProductIndex = basket.findIndex(
+    //   (product) => product.id === headphone.id
+    // );
+    // if (existingProductIndex !== -1) {
+    //   // Товар уже есть в корзине, увеличиваем его количество
+    //   dispatch(increaseProductQuantity(existingProductIndex));
+    // } else {
+    //   // Товара нет в корзине, добавляем его
+    dispatch(addProduct(headphone));
+    // }
   };
 
   return (
