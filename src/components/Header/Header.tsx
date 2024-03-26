@@ -1,9 +1,9 @@
-import favourite from '@assets/icons/interface_icons/favourite.svg';
-import basket from '@assets/icons/interface_icons/basket.svg';
-import style from './Header.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import { Link } from 'react-router-dom';
+import favourite from '@assets/icons/interface_icons/favourite.svg';
+import basket from '@assets/icons/interface_icons/basket.svg';
+import style from './Header.module.scss';
 
 export const Header = () => {
   const count = useSelector(

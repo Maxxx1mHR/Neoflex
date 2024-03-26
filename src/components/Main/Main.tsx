@@ -1,31 +1,18 @@
+import { useDispatch } from 'react-redux';
+import { addProduct } from '@redux/basketSlice';
+import { Headphone } from '@type/interfaces/product.interface';
 import headphonesData from '@data/headphones.json';
 import star from '@assets/icons/interface_icons/star.svg';
 import style from './Main.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@redux/store';
-import { addProduct, increaseProductQuantity } from '@redux/basketSlice';
-import { Headphone } from '@type/interfaces/product.interface';
-import { useEffect } from 'react';
 
 export const Main = () => {
   const wiredHeadphones = headphonesData.slice(0, 6);
-  const wirelessHeadpjones = headphonesData.slice(6);
-
-  const basket = useSelector((state: RootState) => state.basket.basketList);
+  const wirelessHeadpones = headphonesData.slice(6);
 
   const dispatch = useDispatch();
 
   const addProductToBasket = (headphone: Headphone) => {
-    // const existingProductIndex = basket.findIndex(
-    //   (product) => product.id === headphone.id
-    // );
-    // if (existingProductIndex !== -1) {
-    //   // Товар уже есть в корзине, увеличиваем его количество
-    //   dispatch(increaseProductQuantity(existingProductIndex));
-    // } else {
-    //   // Товара нет в корзине, добавляем его
     dispatch(addProduct(headphone));
-    // }
   };
 
   return (
@@ -78,7 +65,7 @@ export const Main = () => {
       <section className={style.headphones__wireless}>
         <h2 className={style.title}>Беспроводные наушники</h2>
         <ul className={style.headphones__list}>
-          {wirelessHeadpjones.map((item) => (
+          {wirelessHeadpones.map((item) => (
             <li className={style.headphones__item} key={item.id}>
               <div className={style.wrapper__image}>
                 <img

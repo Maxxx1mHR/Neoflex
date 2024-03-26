@@ -25,10 +25,6 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addProduct(state, action: PayloadAction<Headphone>) {
-      // state.basketList.push(action.payload.id action.payload);
-      // state.basketList[index].quantity += 1;
-      // state.countProductsInBasket++; // Увеличиваем общее количество товаров в корзине при добавлении нового товара
-
       const { id } = action.payload;
       if (state.basketList[id]) {
         state.basketList[action.payload.id].quantity += 1;
@@ -39,22 +35,11 @@ const basketSlice = createSlice({
       state.totalBasketSum = updateTotalSum(state.basketList);
     },
     removeProduct(state, action: PayloadAction<Headphone>) {
-      // state.basketList = state.basketList.filter((headphone) => {
-      //   return headphone.id !== action.payload.id;
-      // });
-      // state.countProductsInBasket -= action.payload.quantity;
-
       delete state.basketList[action.payload.id];
       state.countProductsInBasket -= action.payload.quantity;
       state.totalBasketSum = updateTotalSum(state.basketList);
     },
     increaseProductQuantity(state, action: PayloadAction<Headphone>) {
-      // const index = action.payload;
-      // state.basketList[index].quantity += 1;
-      // state.countProductsInBasket++; // Увеличиваем общее количество товаров в корзине при увеличении количества товара
-      // if (state.basketList[action.payload.id].quantity === 1) {
-      //   return;
-      // }
       state.basketList[action.payload.id].quantity += 1;
       state.countProductsInBasket += 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
@@ -67,13 +52,6 @@ const basketSlice = createSlice({
       state.basketList[action.payload.id].quantity -= 1;
       state.countProductsInBasket -= 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
-
-      // const index = action.payload;
-      // if (state.basketList[index].quantity === 1) {
-      //   return;
-      // }
-      // state.basketList[index].quantity -= 1;
-      // state.countProductsInBasket--;
     },
   },
 });

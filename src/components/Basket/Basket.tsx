@@ -1,55 +1,36 @@
 import { useDispatch, useSelector } from 'react-redux';
-import increase from '@assets/icons/interface_icons/increase.svg';
-import decrease from '@assets/icons/interface_icons/decrease.svg';
-import trash from '@assets/icons/interface_icons/trash.svg';
-
-import style from './Basket.module.scss';
 import { RootState } from '@redux/store';
-import { Headphone } from '@type/interfaces/product.interface';
 import {
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProduct,
 } from '@redux/basketSlice';
+import { Headphone } from '@type/interfaces/product.interface';
+import increase from '@assets/icons/interface_icons/increase.svg';
+import decrease from '@assets/icons/interface_icons/decrease.svg';
+import trash from '@assets/icons/interface_icons/trash.svg';
+import style from './Basket.module.scss';
 
 export const Basket = () => {
   const basket = useSelector((state: RootState) => state.basket.basketList);
 
-  console.log(basket);
-
   const dispatch = useDispatch();
 
   const increaseCountProduct = (headphone: Headphone) => {
-    // const existingProductIndex = basket.findIndex(
-    //   (product) => product.id === headphone.id
-    // );
-    // dispatch(increaseProductQuantity(existingProductIndex));
     dispatch(increaseProductQuantity(headphone));
   };
 
   const decreaseCountProduct = (headphone: Headphone) => {
-    // const existingProductIndex = basket.findIndex(
-    //   (product) => product.id === headphone.id
-    // );
-    // dispatch(decreaseProductQuantity(existingProductIndex));
     dispatch(decreaseProductQuantity(headphone));
   };
 
   const removeProductFromBasket = (headphone: Headphone) => {
-    console.log('123');
-    console.log(basket);
     dispatch(removeProduct(headphone));
   };
 
   const totalBasketSum = useSelector(
     (state: RootState) => state.basket.totalBasketSum
   );
-  // dispatch(calculateTotalSum());
-
-  // useEffect(() => {
-  //   dispatch(calculateTotalSum());
-  // }, [dispatch]);
-  // console.log(sum);
 
   return (
     <section>
@@ -90,20 +71,17 @@ export const Basket = () => {
                       </div>
                     </div>
                   </div>
-
-                  <div className={style.wrapper__trash}>
-                    <img
-                      src={trash}
-                      alt="trash"
-                      className={style.trash}
-                      onClick={() => removeProductFromBasket(item)}
-                    />
-                    <div className={style.price}>
-                      {item.price * item.quantity} ₽
-                    </div>
-                  </div>
                 </li>
               </ul>
+              {/* <div className={style.wrapper__trash}> */}
+              <img
+                src={trash}
+                alt="trash"
+                className={style.trash}
+                onClick={() => removeProductFromBasket(item)}
+              />
+              <div className={style.price}>{item.price * item.quantity} ₽</div>
+              {/* </div> */}
             </li>
           ))}
         </ul>

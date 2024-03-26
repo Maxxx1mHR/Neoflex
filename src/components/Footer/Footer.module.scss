@@ -8,6 +8,10 @@
   padding: 2.9rem 2.7rem 3.2rem 2.9rem;
   border-radius: 3rem 3rem 0 0;
   background-color: $color-white;
+  @include media-tablet {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .footer__list {
@@ -16,15 +20,18 @@
   justify-content: space-between;
   list-style-type: none;
   min-height: 8.3rem;
+  @include media-tablet {
+    // display: block;
+    align-items: center;
+    min-height: unset;
+  }
 }
 
 .footer__item {
   @include font($weight: 400);
-  // margin-bottom: 1rem;
-
-  // &:last-child {
-  //   margin-bottom: 0;
-  // }
+  @include media-tablet {
+    margin-bottom: 1rem;
+  }
 }
 
 .footer__language {
@@ -32,6 +39,9 @@
   justify-content: space-between;
   align-items: center;
   width: 11rem;
+  @include media-tablet {
+    margin-bottom: 1rem;
+  }
 }
 
 .footer__social {
@@ -47,4 +57,10 @@
 
 .active {
   color: $color-text;
+}
+
+.hide {
+  @include media-tablet {
+    display: none;
+  }
 }

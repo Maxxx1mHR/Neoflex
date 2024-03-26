@@ -2,13 +2,12 @@ import globe from '@assets/icons/interface_icons/globe.svg';
 import telegram from '@assets/icons/social_icons/telegram.svg';
 import vk from '@assets/icons/social_icons/vk.svg';
 import whatsapp from '@assets/icons/social_icons/whatsapp.svg';
-
 import style from './Footer.module.scss';
 
 export const Footer = () => {
   return (
     <footer className={style.footer}>
-      <div className="logo">qpick</div>
+      <div className={`logo ${style.hide}`}>qpick</div>
       <ul className={style.footer__list}>
         <li className={style.footer__item}>Избранное</li>
         <li className={style.footer__item}>Корзина</li>
