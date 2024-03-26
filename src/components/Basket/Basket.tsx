@@ -73,7 +73,6 @@ export const Basket = () => {
                   </div>
                 </li>
               </ul>
-              {/* <div className={style.wrapper__trash}> */}
               <img
                 src={trash}
                 alt="trash"
@@ -81,7 +80,6 @@ export const Basket = () => {
                 onClick={() => removeProductFromBasket(item)}
               />
               <div className={style.price}>{item.price * item.quantity} ₽</div>
-              {/* </div> */}
             </li>
           ))}
         </ul>

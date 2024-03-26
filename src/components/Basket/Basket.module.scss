@@ -1,5 +1,6 @@
 @import '@styles/abstract/constants';
 @import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
 
 .title {
   @include font($size: 2rem, $color: $color-dark-grey);
@@ -37,18 +38,14 @@
   background-color: $color-white;
   height: 22rem;
   width: 63rem;
-  // max-width: 63rem;
   list-style-type: none;
   @include media-desktop {
-    // max-width: 43rem;
     width: 43rem;
   }
   @include media-mobile {
     width: 28rem;
     flex-direction: column;
     height: 100%;
-
-    // max-width: 30rem;
   }
 }
 
@@ -118,26 +115,11 @@
   padding: 0.8rem 0.8rem;
   border-radius: 100%;
   background-color: $color-text-light;
+  @extend %animation-scale;
 }
 
 .description__list {
   list-style-type: none;
-}
-
-.description__item {
-  // display: flex;
-  // justify-content: space-between;
-  // width: 44rem;
-  // height: 100%;
-  // @include media-desktop {
-  //   width: 24rem;
-  // }
-  // @include media-mobile {
-  //   width: unset;
-  // }
-  // @include media-mobile {
-  //   justify-content: center;
-  // }
 }
 
 .wrapper__description {
@@ -161,14 +143,8 @@
   position: absolute;
   right: 3rem;
   width: 1.9rem;
+  @extend %animation-scale;
 }
-
-// .wrapper__trash {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   align-items: flex-end;
-// }
 
 .price {
   position: absolute;

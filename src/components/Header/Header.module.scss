@@ -1,5 +1,6 @@
 @import '@styles/abstract/constants';
 @import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
 
 .navigation {
   display: flex;
@@ -34,4 +35,8 @@
 
 .link {
   position: relative;
+}
+
+.basket {
+  @extend %animation-scale;
 }

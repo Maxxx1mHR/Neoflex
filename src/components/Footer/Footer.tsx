@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import globe from '@assets/icons/interface_icons/globe.svg';
 import telegram from '@assets/icons/social_icons/telegram.svg';
 import vk from '@assets/icons/social_icons/vk.svg';
@@ -7,14 +8,24 @@ import style from './Footer.module.scss';
 export const Footer = () => {
   return (
     <footer className={style.footer}>
-      <div className={`logo ${style.hide}`}>qpick</div>
+      <Link to="/" className={`logo ${style.hide}`}>
+        qpick
+      </Link>
       <ul className={style.footer__list}>
-        <li className={style.footer__item}>Избранное</li>
-        <li className={style.footer__item}>Корзина</li>
-        <li className={style.footer__item}>Контакты</li>
+        <li className={style.footer__item}>
+          <span>Избранное</span>
+        </li>
+        <Link to="/basket" className={style.footer__item}>
+          <span>Корзина</span>
+        </Link>
+        <li className={style.footer__item}>
+          <span>Контакты</span>
+        </li>
       </ul>
       <ul className={style.footer__list}>
-        <li className={style.footer__item}>Условия сервиса</li>
+        <li className={style.footer__item}>
+          <span>Условия сервиса</span>
+        </li>
         <li className={style.footer__language}>
           <img src={globe} alt="globe" />
           <div className={`${style.language} ${style.active}`}>Рус</div>
@@ -22,9 +33,15 @@ export const Footer = () => {
         </li>
       </ul>
       <div className={style.footer__social}>
-        <img src={vk} alt="vk" />
-        <img src={telegram} alt="telegram" />
-        <img src={whatsapp} alt="whatsapp" />
+        <a href="https://vk.com/mvpudeev">
+          <img src={vk} alt="vk" />
+        </a>
+        <a href="https://t.me/mvpudeev" target="_blank">
+          <img src={telegram} alt="telegram" />
+        </a>
+        <a href="https://www.whatsapp.com/?lang=ru_RU" target="_blank">
+          <img src={whatsapp} alt="whatsapp" />
+        </a>
       </div>
     </footer>
   );

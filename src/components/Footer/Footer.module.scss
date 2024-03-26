@@ -1,5 +1,6 @@
 @import '@styles/abstract/constants';
 @import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
 
 .footer {
   display: flex;
@@ -21,16 +22,19 @@
   list-style-type: none;
   min-height: 8.3rem;
   @include media-tablet {
-    // display: block;
     align-items: center;
     min-height: unset;
   }
 }
 
 .footer__item {
-  @include font($weight: 400);
   @include media-tablet {
     margin-bottom: 1rem;
+  }
+  span {
+    @include font($weight: 400);
+    position: relative;
+    @extend %animation-underline;
   }
 }
 
@@ -49,6 +53,9 @@
   justify-content: space-between;
   align-items: center;
   width: 12rem;
+  a {
+    @extend %animation-scale;
+  }
 }
 
 .language {
