@@ -35,8 +35,5 @@
 
 .link {
   position: relative;
-}
-
-.basket {
   @extend %animation-scale;
 }

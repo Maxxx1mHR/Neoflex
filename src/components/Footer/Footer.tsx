@@ -12,9 +12,9 @@ export const Footer = () => {
         qpick
       </Link>
       <ul className={style.footer__list}>
-        <li className={style.footer__item}>
+        <Link to="favorite" className={style.footer__item}>
           <span>Избранное</span>
-        </li>
+        </Link>
         <Link to="/basket" className={style.footer__item}>
           <span>Корзина</span>
         </Link>

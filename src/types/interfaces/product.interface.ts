@@ -7,4 +7,5 @@ export interface Headphone {
   rate: number;
   quantity: number;
   description?: string;
+  liked: boolean;
 }

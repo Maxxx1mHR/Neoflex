@@ -1,16 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Headphone } from '@type/interfaces/product.interface';
+import headphonesData from '@data/headphones.json';
+import { stat } from 'fs';
 
 interface BasketState {
   basketList: { [id: number]: Headphone };
   countProductsInBasket: number;
   totalBasketSum: number;
+  products: Headphone[];
+  countLike: number;
 }
 
 const initialState: BasketState = {
   basketList: {},
   countProductsInBasket: 0,
   totalBasketSum: 0,
+  products: headphonesData,
+  countLike: 0,
 };
 
 const updateTotalSum = (basketList: { [id: number]: Headphone }) => {
@@ -44,7 +50,6 @@ const basketSlice = createSlice({
       state.countProductsInBasket += 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
     },
-
     decreaseProductQuantity(state, action: PayloadAction<Headphone>) {
       if (state.basketList[action.payload.id].quantity === 1) {
         return;
@@ -52,6 +57,18 @@ const basketSlice = createSlice({
       state.basketList[action.payload.id].quantity -= 1;
       state.countProductsInBasket -= 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
+    },
+    toggleLikeStatus(state, action: PayloadAction<Headphone>) {
+      let countLike = 0;
+      state.products.map((product) => {
+        if (product.id === action.payload.id) {
+          product.liked = !product.liked;
+        }
+        if (product.liked) {
+          countLike += 1;
+        }
+      });
+      state.countLike = countLike;
     },
   },
 });
@@ -61,6 +78,7 @@ export const {
   removeProduct,
   increaseProductQuantity,
   decreaseProductQuantity,
+  toggleLikeStatus,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

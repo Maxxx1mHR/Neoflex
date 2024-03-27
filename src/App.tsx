@@ -1,5 +1,6 @@
 import { Header } from '@components/Header/Header';
 import { Main } from '@components/Main/Main';
+import { Favorite } from '@components/Favorite/Favorite';
 import { Basket } from '@components/Basket/Basket';
 import { Footer } from '@components/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -55,6 +56,7 @@ export const App = () => {
                   />
                 }
               />
+              <Route path="favorite" element={<Favorite />} />
               <Route path="basket" element={<Basket />} />
             </Routes>
           </main>

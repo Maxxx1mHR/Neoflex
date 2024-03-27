@@ -1,0 +1,11 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
+
+.title {
+  @include font($size: 2rem, $color: $color-dark-grey);
+  margin-bottom: 1.5rem;
+  @include media-desktop {
+    padding: 0 1rem;
+  }
+}

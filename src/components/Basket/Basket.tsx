@@ -88,7 +88,9 @@ export const Basket = () => {
             <div className={style.total}>итого</div>
             <div className={style.sum}>₽ {totalBasketSum}</div>
           </div>
-          <button className={style.button__order}>Перейти к оформлению</button>
+          <button className={style.button__order}>
+            <span>Перейти к оформлению</span>
+          </button>
         </div>
       </div>
     </section>

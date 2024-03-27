@@ -89,13 +89,17 @@
   padding: 2rem 6.2rem;
   border-radius: 2rem;
   background-color: $color-black;
-  @include font($color: $color-white);
-  cursor: pointer;
   @include media-desktop {
     padding: 2rem 3.2rem;
   }
   @include media-mobile {
     padding: 1.6rem 2.2rem;
+  }
+
+  span {
+    position: relative;
+    @include font($color: $color-white);
+    @extend %animation-underline;
   }
 }
 

@@ -73,10 +73,20 @@
 .description__rate {
   @include font($color: $color-dark-text);
 }
+
+.wrapper__button {
+  display: flex;
+  gap: 2rem;
+}
+
 .description__button {
   position: relative;
   @include font();
   @extend %animation-underline;
+}
+
+.like {
+  @extend %animation-scale;
 }
 
 .description__line {
