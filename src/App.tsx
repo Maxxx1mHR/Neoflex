@@ -9,6 +9,7 @@ import { Modal } from '@components/Modal/Modal';
 import { useSelector } from 'react-redux';
 import { Headphone } from '@type/interfaces/product.interface';
 import { useEffect, useState } from 'react';
+import { Order } from '@components/Order/Order';
 
 export const App = () => {
   const [headphoneWithAddInfo, setHeadphoneWithAddInfo] = useState<Headphone[]>(
@@ -58,6 +59,7 @@ export const App = () => {
               />
               <Route path="favorite" element={<Favorite />} />
               <Route path="basket" element={<Basket />} />
+              <Route path="basket/order" element={<Order />} />
             </Routes>
           </main>
           <Footer />

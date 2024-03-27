@@ -85,10 +85,30 @@
   @include font($size: 1.5rem);
 }
 
+// .button__order {
+//   padding: 2rem 6.2rem;
+//   border-radius: 2rem;
+//   background-color: $color-black;
+//   @include media-desktop {
+//     padding: 2rem 3.2rem;
+//   }
+//   @include media-mobile {
+//     padding: 1.6rem 2.2rem;
+//   }
+
+//   span {
+//     position: relative;
+//     @include font($color: $color-white);
+//     @extend %animation-underline;
+//   }
+// }
+
 .button__order {
+  position: relative;
   padding: 2rem 6.2rem;
   border-radius: 2rem;
   background-color: $color-black;
+  cursor: pointer;
   @include media-desktop {
     padding: 2rem 3.2rem;
   }
@@ -97,9 +117,14 @@
   }
 
   span {
-    position: relative;
     @include font($color: $color-white);
+    position: relative;
     @extend %animation-underline;
+  }
+
+  &:hover span::before {
+    width: 100%;
+    left: 0;
   }
 }
 

@@ -18,11 +18,11 @@ export const Header = () => {
         qpick
       </Link>
       <div className={style.wrapper}>
-        <Link to="/favorite" className={style.link}>
+        <Link to="favorite" className={style.link}>
           {countLike >= 1 && <span className={style.count}>{countLike}</span>}
           <img src={favorite} alt="favorite" className={style.favorite} />
         </Link>
-        <Link to="/basket" className={style.link}>
+        <Link to="basket" className={style.link}>
           {count >= 1 && <span className={style.count}>{count}</span>}
           <img src={basket} alt="basket" />
         </Link>

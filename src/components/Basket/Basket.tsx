@@ -10,6 +10,7 @@ import increase from '@assets/icons/interface_icons/increase.svg';
 import decrease from '@assets/icons/interface_icons/decrease.svg';
 import trash from '@assets/icons/interface_icons/trash.svg';
 import style from './Basket.module.scss';
+import { Link } from 'react-router-dom';
 
 export const Basket = () => {
   const basket = useSelector((state: RootState) => state.basket.basketList);
@@ -88,9 +89,11 @@ export const Basket = () => {
             <div className={style.total}>итого</div>
             <div className={style.sum}>₽ {totalBasketSum}</div>
           </div>
-          <button className={style.button__order}>
-            <span>Перейти к оформлению</span>
-          </button>
+          <Link to="order">
+            <button className={style.button__order}>
+              <span>Перейти к оформлению</span>
+            </button>
+          </Link>
         </div>
       </div>
     </section>

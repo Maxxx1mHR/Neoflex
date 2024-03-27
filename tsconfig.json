@@ -14,7 +14,8 @@
       "@styles/*": ["styles/*"],
       "@assets/*": ["assets/*"],
       "@service/*": ["service/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@utils/*": ["utils/*"]
     },
 
     /* Bundler mode */

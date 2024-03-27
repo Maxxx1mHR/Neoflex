@@ -15,7 +15,7 @@ export const Footer = () => {
         <Link to="favorite" className={style.footer__item}>
           <span>Избранное</span>
         </Link>
-        <Link to="/basket" className={style.footer__item}>
+        <Link to="basket" className={style.footer__item}>
           <span>Корзина</span>
         </Link>
         <li className={style.footer__item}>
