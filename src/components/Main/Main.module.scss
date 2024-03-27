@@ -36,6 +36,10 @@
   height: 30.6rem;
 }
 
+.headphone__image {
+  @extend %animation-scale;
+}
+
 .title {
   margin-bottom: 2rem;
   @include font($size: 2rem, $color: $color-dark-text);
@@ -46,6 +50,8 @@
 }
 
 .description__title {
+  margin-bottom: 2.5rem;
+
   @include font($color: $color-charcoal);
 }
 
@@ -76,13 +82,19 @@
 .description__line {
   display: flex;
   justify-content: space-between;
-  &:first-child {
-    margin-bottom: 2.5rem;
-  }
+  // &:first-child {
+  //   margin-bottom: 2.5rem;
+  // }
 }
 
 .wrapper__rate {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.description__additionalInfo {
+  margin-bottom: 1rem;
+  text-align: justify;
+  @include font($size: 1.2rem, $weight: 400, $color: $color-charcoal);
 }

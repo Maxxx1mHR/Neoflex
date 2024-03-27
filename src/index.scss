@@ -28,3 +28,7 @@ body {
   @include font($size: 2.5rem, $weight: 700, $color: $color-dark-grey);
   @extend %animation-scale;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

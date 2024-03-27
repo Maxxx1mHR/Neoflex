@@ -5,7 +5,15 @@ import headphonesData from '@data/headphones.json';
 import star from '@assets/icons/interface_icons/star.svg';
 import style from './Main.module.scss';
 
-export const Main = () => {
+export const Main = ({
+  setHeadphoneWithAddInfo,
+  // setActiveModal,
+  openModal,
+}: {
+  setHeadphoneWithAddInfo: (headphone: Headphone[]) => void;
+  // setActiveModal: (active: boolean) => void;
+  openModal: () => void;
+}) => {
   const wiredHeadphones = headphonesData.slice(0, 6);
   const wirelessHeadpones = headphonesData.slice(6);
 
@@ -27,6 +35,11 @@ export const Main = () => {
                   src={item.img}
                   alt="headphone image"
                   className={style.headphone__image}
+                  onClick={() => {
+                    setHeadphoneWithAddInfo([item]);
+                    // setActiveModal(true);
+                    openModal();
+                  }}
                 />
               </div>
               <ul className={style.description__list}>
@@ -72,6 +85,11 @@ export const Main = () => {
                   src={item.img}
                   alt="headphone image"
                   className={style.headphone__image}
+                  onClick={() => {
+                    setHeadphoneWithAddInfo([item]);
+                    // setActiveModal(true);
+                    openModal();
+                  }}
                 />
               </div>
               <ul className={style.description__list}>

@@ -6,4 +6,5 @@ export interface Headphone {
   old_price?: number;
   rate: number;
   quantity: number;
+  description?: string;
 }
