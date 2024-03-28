@@ -1,27 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, toggleLikeStatus } from '@redux/productSlice';
 import { Headphone } from '@type/interfaces/product.interface';
-import headphonesData from '@data/headphones.json';
 import star from '@assets/icons/interface_icons/star.svg';
 import like from '@assets/icons/interface_icons/favorite_like.svg';
 import dislike from '@assets/icons/interface_icons/favorite_dislike.svg';
 
 import style from './Main.module.scss';
-import { useEffect, useState } from 'react';
 import { RootState } from '@redux/store';
 
 export const Main = ({
   setHeadphoneWithAddInfo,
-  // setActiveModal,
   openModal,
 }: {
   setHeadphoneWithAddInfo: (headphone: Headphone[]) => void;
-  // setActiveModal: (active: boolean) => void;
   openModal: () => void;
 }) => {
-  const products = useSelector((state: RootState) => state.basket.products);
-  // const wiredHeadphones = headphonesData.slice(0, 6);
-  // const wirelessHeadpones = headphonesData.slice(6);
+  let products = useSelector((state: RootState) => state.basket.products);
 
   const wiredHeadphones = products.slice(0, 6);
   const wirelessHeadphones = products.slice(6);
@@ -31,10 +25,6 @@ export const Main = ({
   const addProductToBasket = (headphone: Headphone) => {
     dispatch(addProduct(headphone));
   };
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   return (
     <>
@@ -50,7 +40,6 @@ export const Main = ({
                   className={style.headphone__image}
                   onClick={() => {
                     setHeadphoneWithAddInfo([item]);
-                    // setActiveModal(true);
                     openModal();
                   }}
                 />
@@ -80,10 +69,8 @@ export const Main = ({
                         src={item.liked ? like : dislike}
                         alt="favorite"
                         className={style.like}
-                        // onClick={() => setIsLike((prev) => !prev)}
                         onClick={() => {
                           dispatch(toggleLikeStatus(item));
-                          console.log(item);
                         }}
                       />
                       <div
@@ -112,7 +99,6 @@ export const Main = ({
                   className={style.headphone__image}
                   onClick={() => {
                     setHeadphoneWithAddInfo([item]);
-                    // setActiveModal(true);
                     openModal();
                   }}
                 />
@@ -142,10 +128,8 @@ export const Main = ({
                         src={item.liked ? like : dislike}
                         alt="favorite"
                         className={style.like}
-                        // onClick={() => setIsLike((prev) => !prev)}
                         onClick={() => {
                           dispatch(toggleLikeStatus(item));
-                          console.log(item);
                         }}
                       />
                       <div

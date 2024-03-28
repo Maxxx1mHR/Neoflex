@@ -6,13 +6,12 @@ import { Footer } from '@components/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Modal } from '@components/Modal/Modal';
-import { useSelector } from 'react-redux';
 import { Headphone } from '@type/interfaces/product.interface';
 import { useEffect, useState } from 'react';
 import { Order } from '@components/Order/Order';
-import { useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 
 export const App = () => {
   const [headphoneWithAddInfo, setHeadphoneWithAddInfo] = useState<Headphone[]>(
@@ -20,8 +19,6 @@ export const App = () => {
   );
 
   const [activeModal, setActiveModal] = useState(false);
-
-  // console.log(headphoneWithAddInfo);
 
   const openModal = () => {
     setActiveModal((prev) => !prev);
@@ -31,7 +28,6 @@ export const App = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && activeModal) {
-        // setActiveModal(false);
         openModal();
       }
     };
@@ -46,7 +42,7 @@ export const App = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   return (
-    <>
+    <ErrorBoundary>
       <div className="container">
         <BrowserRouter>
           <Header />
@@ -57,7 +53,6 @@ export const App = () => {
                 element={
                   <Main
                     setHeadphoneWithAddInfo={setHeadphoneWithAddInfo}
-                    // setActiveModal={setActiveModal}
                     openModal={openModal}
                   />
                 }
@@ -76,7 +71,6 @@ export const App = () => {
       <Modal
         headphoneWithAddInfo={headphoneWithAddInfo}
         openModal={openModal}
-        // setActiveModal={setActiveModal}
         activeModal={activeModal}
       />
       {showAlert && (
@@ -93,6 +87,6 @@ export const App = () => {
           <span style={{ fontSize: '2rem' }}>Ваш заказ успешно оформлен!</span>
         </Alert>
       )}
-    </>
+    </ErrorBoundary>
   );
 };

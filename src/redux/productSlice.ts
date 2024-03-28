@@ -4,18 +4,34 @@ import headphonesData from '@data/headphones.json';
 
 interface BasketState {
   basketList: { [id: number]: Headphone };
+  favoriteList: { [id: number]: Headphone };
   countProductsInBasket: number;
   totalBasketSum: number;
   products: Headphone[];
   countLike: number;
 }
 
+const basketList = JSON.parse(localStorage.getItem('basketList') || '{}');
+const favoriteList = JSON.parse(localStorage.getItem('favoriteList') || '{}');
+const countLike = Number(localStorage.getItem('countLike')) || 0;
+const countProductsInBasket =
+  Number(localStorage.getItem('countProductsInBasket')) || 0;
+const totalBasketSum = Number(localStorage.getItem('totalBasketSum')) || 0;
+
+let updateHeadphonesFromLocalStorage: Headphone[] = [];
+if (favoriteList) {
+  updateHeadphonesFromLocalStorage = headphonesData.map((item) => ({
+    ...item,
+    liked: favoriteList[item.id] ? true : false,
+  }));
+}
 const initialState: BasketState = {
-  basketList: {},
-  countProductsInBasket: 0,
-  totalBasketSum: 0,
-  products: headphonesData,
-  countLike: 0,
+  basketList: basketList,
+  favoriteList: favoriteList,
+  countProductsInBasket: countProductsInBasket,
+  totalBasketSum: totalBasketSum,
+  products: favoriteList ? updateHeadphonesFromLocalStorage : headphonesData,
+  countLike: countLike,
 };
 
 const updateTotalSum = (basketList: { [id: number]: Headphone }) => {
@@ -33,21 +49,44 @@ const basketSlice = createSlice({
       const { id } = action.payload;
       if (state.basketList[id]) {
         state.basketList[action.payload.id].quantity += 1;
+        localStorage.setItem('basketList', JSON.stringify(state.basketList));
       } else {
         state.basketList[action.payload.id] = action.payload;
+        localStorage.setItem('basketList', JSON.stringify(state.basketList));
       }
       state.countProductsInBasket += 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
+      localStorage.setItem('basketList', JSON.stringify(state.basketList));
+
+      localStorage.setItem(
+        'countProductsInBasket',
+        String(state.countProductsInBasket)
+      );
+      localStorage.setItem('totalBasketSum', String(state.totalBasketSum));
     },
     removeProduct(state, action: PayloadAction<Headphone>) {
       delete state.basketList[action.payload.id];
       state.countProductsInBasket -= action.payload.quantity;
       state.totalBasketSum = updateTotalSum(state.basketList);
+      localStorage.setItem('basketList', JSON.stringify(state.basketList));
+
+      localStorage.setItem(
+        'countProductsInBasket',
+        String(state.countProductsInBasket)
+      );
+      localStorage.setItem('totalBasketSum', String(state.totalBasketSum));
     },
     increaseProductQuantity(state, action: PayloadAction<Headphone>) {
       state.basketList[action.payload.id].quantity += 1;
       state.countProductsInBasket += 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
+      localStorage.setItem('basketList', JSON.stringify(state.basketList));
+
+      localStorage.setItem(
+        'countProductsInBasket',
+        String(state.countProductsInBasket)
+      );
+      localStorage.setItem('totalBasketSum', String(state.totalBasketSum));
     },
     decreaseProductQuantity(state, action: PayloadAction<Headphone>) {
       if (state.basketList[action.payload.id].quantity === 1) {
@@ -56,23 +95,48 @@ const basketSlice = createSlice({
       state.basketList[action.payload.id].quantity -= 1;
       state.countProductsInBasket -= 1;
       state.totalBasketSum = updateTotalSum(state.basketList);
+      localStorage.setItem('basketList', JSON.stringify(state.basketList));
+
+      localStorage.setItem(
+        'countProductsInBasket',
+        String(state.countProductsInBasket)
+      );
+      localStorage.setItem('totalBasketSum', String(state.totalBasketSum));
     },
     toggleLikeStatus(state, action: PayloadAction<Headphone>) {
       let countLike = 0;
+      const { id } = action.payload;
       state.products.map((product) => {
         if (product.id === action.payload.id) {
           product.liked = !product.liked;
+          if (state.favoriteList[id]) {
+            delete state.favoriteList[id];
+            localStorage.setItem(
+              'favoriteList',
+              JSON.stringify(state.favoriteList)
+            );
+          } else {
+            state.favoriteList[id] = product;
+            localStorage.setItem(
+              'favoriteList',
+              JSON.stringify(state.favoriteList)
+            );
+          }
         }
         if (product.liked) {
           countLike += 1;
         }
       });
       state.countLike = countLike;
+      localStorage.setItem('countLike', String(state.countLike));
     },
     clearBasket(state) {
       state.basketList = [];
       state.countProductsInBasket = 0;
       state.totalBasketSum = 0;
+      localStorage.setItem('basketList', JSON.stringify(state.basketList));
+      localStorage.removeItem('countProductsInBasket');
+      localStorage.setItem('totalBasketSum', String(state.totalBasketSum));
     },
   },
 });

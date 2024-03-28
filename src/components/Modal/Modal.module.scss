@@ -5,13 +5,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // height: 100%;
-  // width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: rgba(0, 0, 0, 0.6);
-  // transform: scale(0);
 }
 
 .modal__wrapper {
@@ -19,7 +16,6 @@
   opacity: 0;
 }
 .active {
-  // transform: scale(1);
   visibility: visible;
   opacity: 1;
 }
@@ -28,8 +24,6 @@
   border-radius: 2rem;
   padding: 2rem;
   background-color: $color-white;
-  // width: 100px;
-  // height: 100px;
 }
 
 .overlay {
@@ -41,35 +35,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: $color-black;
   background-color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
-  // opacity: 0.6;
-  // opacity: 0;
-  // visibility: hidden;
 }
-
-// .modal {
-//   position: ;
-//   top: 0;
-//   left:0;
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: rgba(0, 0, 0, 0.6);
-//   transform: scale(0);
-// }
-
-// .active {
-//   transform: scale(1);
-// }
-
-// .modal__content {
-//   border-radius: 2rem;
-//   padding: 2rem;
-//   background-color: $color-white;
-//   width: 100px;
-//   height: 100px;
-// }

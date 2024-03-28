@@ -18,25 +18,6 @@
   }
 }
 
-// %animation-underline-button {
-//   &::before {
-//     content: '';
-//     position: absolute;
-//     left: 50%;
-//     bottom: 0;
-//     height: 2px;
-//     width: 0;
-//     background: $color-text;
-//     transition:
-//       width 0.3s ease 0s,
-//       left 0.3s ease 0s;
-//   }
-//   &:hover span:before {
-//     width: 100%;
-//     left: 0;
-//   }
-// }
-
 %animation-scale {
   cursor: pointer;
   transition: transform 0.4s;
