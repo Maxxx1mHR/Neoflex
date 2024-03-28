@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import style from './Modal.module.scss';
 import styles from '../Main/Main.module.scss';
 import { Headphone } from '@type/interfaces/product.interface';
-import { addProduct } from '@redux/basketSlice';
+import { addProduct } from '@redux/productSlice';
 import star from '@assets/icons/interface_icons/star.svg';
 
 export const Modal = ({

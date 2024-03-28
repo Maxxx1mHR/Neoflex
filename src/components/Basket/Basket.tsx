@@ -4,7 +4,7 @@ import {
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProduct,
-} from '@redux/basketSlice';
+} from '@redux/productSlice';
 import { Headphone } from '@type/interfaces/product.interface';
 import increase from '@assets/icons/interface_icons/increase.svg';
 import decrease from '@assets/icons/interface_icons/decrease.svg';
@@ -14,6 +14,10 @@ import { Link } from 'react-router-dom';
 
 export const Basket = () => {
   const basket = useSelector((state: RootState) => state.basket.basketList);
+
+  const count = useSelector(
+    (state: RootState) => state.basket.countProductsInBasket
+  );
 
   const dispatch = useDispatch();
 
@@ -89,7 +93,7 @@ export const Basket = () => {
             <div className={style.total}>итого</div>
             <div className={style.sum}>₽ {totalBasketSum}</div>
           </div>
-          <Link to="order">
+          <Link to="order" className={count ? '' : style.button__disabled}>
             <button className={style.button__order}>
               <span>Перейти к оформлению</span>
             </button>

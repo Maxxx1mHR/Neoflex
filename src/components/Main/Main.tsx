@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, toggleLikeStatus } from '@redux/basketSlice';
+import { addProduct, toggleLikeStatus } from '@redux/productSlice';
 import { Headphone } from '@type/interfaces/product.interface';
 import headphonesData from '@data/headphones.json';
 import star from '@assets/icons/interface_icons/star.svg';

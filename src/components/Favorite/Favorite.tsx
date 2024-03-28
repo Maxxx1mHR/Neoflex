@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import star from '@assets/icons/interface_icons/star.svg';
 import like from '@assets/icons/interface_icons/favorite_like.svg';
 import dislike from '@assets/icons/interface_icons/favorite_dislike.svg';
-import { addProduct, toggleLikeStatus } from '@redux/basketSlice';
+import { addProduct, toggleLikeStatus } from '@redux/productSlice';
 import { Headphone } from '@type/interfaces/product.interface';
 
 export const Favorite = () => {

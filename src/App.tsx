@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux';
 import { Headphone } from '@type/interfaces/product.interface';
 import { useEffect, useState } from 'react';
 import { Order } from '@components/Order/Order';
+import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
 
 export const App = () => {
   const [headphoneWithAddInfo, setHeadphoneWithAddInfo] = useState<Headphone[]>(
@@ -40,6 +43,8 @@ export const App = () => {
     };
   }, [activeModal]);
 
+  const [showAlert, setShowAlert] = useState(false);
+
   return (
     <>
       <div className="container">
@@ -59,7 +64,10 @@ export const App = () => {
               />
               <Route path="favorite" element={<Favorite />} />
               <Route path="basket" element={<Basket />} />
-              <Route path="basket/order" element={<Order />} />
+              <Route
+                path="basket/order"
+                element={<Order setShowAlert={setShowAlert} />}
+              />
             </Routes>
           </main>
           <Footer />
@@ -71,6 +79,20 @@ export const App = () => {
         // setActiveModal={setActiveModal}
         activeModal={activeModal}
       />
+      {showAlert && (
+        <Alert
+          icon={<CheckIcon sx={{ fontSize: '3rem' }} />}
+          severity="success"
+          sx={{
+            position: 'absolute',
+            top: '2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          <span style={{ fontSize: '2rem' }}>Ваш заказ успешно оформлен!</span>
+        </Alert>
+      )}
     </>
   );
 };
