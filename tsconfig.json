@@ -8,6 +8,8 @@
     "baseUrl": "./src",
     "paths": {
       "@redux/*": ["redux/*"],
+      "@pages/*": ["pages/*"],
+      "@layouts/*": ["layouts/*"],
       "@components/*": ["components/*"],
       "@type/*": ["types/*"],
       "@helpers/*": ["helpers/*"],

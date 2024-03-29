@@ -9,6 +9,8 @@ interface BasketState {
   totalBasketSum: number;
   products: Headphone[];
   countLike: number;
+  isModalOpen: boolean;
+  headphoneWithAddInfo: Headphone[];
 }
 
 const basketList = JSON.parse(localStorage.getItem('basketList') || '{}');
@@ -32,6 +34,8 @@ const initialState: BasketState = {
   totalBasketSum: totalBasketSum,
   products: favoriteList ? updateHeadphonesFromLocalStorage : headphonesData,
   countLike: countLike,
+  isModalOpen: false,
+  headphoneWithAddInfo: [],
 };
 
 const updateTotalSum = (basketList: { [id: number]: Headphone }) => {
@@ -138,6 +142,12 @@ const basketSlice = createSlice({
       localStorage.removeItem('countProductsInBasket');
       localStorage.setItem('totalBasketSum', String(state.totalBasketSum));
     },
+    handlerModalStatus(state) {
+      state.isModalOpen = !state.isModalOpen;
+    },
+    setHeadphoneWithAddInfo(state, action: PayloadAction<Headphone[]>) {
+      state.headphoneWithAddInfo = action.payload;
+    },
   },
 });
 
@@ -148,6 +158,8 @@ export const {
   decreaseProductQuantity,
   toggleLikeStatus,
   clearBasket,
+  handlerModalStatus,
+  setHeadphoneWithAddInfo,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

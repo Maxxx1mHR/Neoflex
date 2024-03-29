@@ -1,34 +1,34 @@
-import { Header } from '@components/Header/Header';
-import { Main } from '@components/Main/Main';
-import { Favorite } from '@components/Favorite/Favorite';
-import { Basket } from '@components/Basket/Basket';
-import { Footer } from '@components/Footer/Footer';
+import { Header } from '@layouts/Header/Header';
+import { Main } from '@pages/Main/Main';
+import { Favorite } from '@pages/Favorite/Favorite';
+import { Basket } from '@pages/Basket/Basket';
+import { Footer } from '@layouts/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Modal } from '@components/Modal/Modal';
-import { Headphone } from '@type/interfaces/product.interface';
 import { useContext, useEffect, useState } from 'react';
-import { Order } from '@components/Order/Order';
+import { Order } from '@pages/Order/Order';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import { LanguageContext } from '@context/LanguageContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
+import {
+  handlerModalStatus,
+  setHeadphoneWithAddInfo,
+} from '@redux/productSlice';
 
 export const App = () => {
-  const [headphoneWithAddInfo, setHeadphoneWithAddInfo] = useState<Headphone[]>(
-    []
+  const isModalOpen = useSelector(
+    (state: RootState) => state.basket.isModalOpen
   );
-
-  const [activeModal, setActiveModal] = useState(false);
-
-  const openModal = () => {
-    setActiveModal((prev) => !prev);
-    document.body.classList.toggle('no-scroll');
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && activeModal) {
-        openModal();
+      if (event.key === 'Escape' && isModalOpen) {
+        dispatch(handlerModalStatus());
+        dispatch(setHeadphoneWithAddInfo([]));
       }
     };
 
@@ -37,7 +37,7 @@ export const App = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeModal]);
+  }, [isModalOpen]);
 
   const [showAlert, setShowAlert] = useState(false);
 
@@ -54,15 +54,7 @@ export const App = () => {
           <Header />
           <main className="main">
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    setHeadphoneWithAddInfo={setHeadphoneWithAddInfo}
-                    openModal={openModal}
-                  />
-                }
-              />
+              <Route path="/" element={<Main />} />
               <Route path="favorite" element={<Favorite />} />
               <Route path="basket" element={<Basket />} />
               <Route
@@ -74,11 +66,7 @@ export const App = () => {
           <Footer />
         </BrowserRouter>
       </div>
-      <Modal
-        headphoneWithAddInfo={headphoneWithAddInfo}
-        openModal={openModal}
-        activeModal={activeModal}
-      />
+      <Modal />
       {showAlert && (
         <Alert
           icon={<CheckIcon sx={{ fontSize: '3rem' }} />}
