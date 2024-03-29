@@ -1,13 +1,16 @@
-import { TextField } from '@mui/material';
-import style from './Order.module.scss';
-import { ThemeProvider } from '@mui/material';
-import { theme } from '@utils/Theme.tsx';
-import { RootState } from '@redux/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 import { clearBasket } from '@redux/productSlice';
 import { LanguageContext } from '@context/LanguageContext';
+
+import { theme } from '@utils/Theme.tsx';
+
+import { TextField } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
+
+import style from './Order.module.scss';
 
 export const Order = ({
   setShowAlert,
@@ -15,16 +18,23 @@ export const Order = ({
   setShowAlert: (value: boolean) => void;
 }) => {
   const totalBasketSum = useSelector(
-    (state: RootState) => state.basket.totalBasketSum
+    (state: RootState) => state.product.totalBasketSum
   );
 
-  const count = useSelector(
-    (state: RootState) => state.basket.countProductsInBasket
-  );
-
-  const navigate = useNavigate();
+  const {
+    data: {
+      makingAnOrder,
+      form: { firstName, lastName, address, quantity, sum, order },
+      errors: { length, onlyLetters, characters },
+    },
+  } = useContext(LanguageContext);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const count = useSelector(
+    (state: RootState) => state.product.countProductsInBasket
+  );
 
   const [orderData, setOrderData] = useState({
     firstName: '',
@@ -47,28 +57,25 @@ export const Order = ({
     },
   });
 
+  // Обработчик события изменения ввода
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Имя(название) поля inputa и введеные значение
     const { name, value } = event.target;
 
+    // Обновление состояния новым введеным значением
     setOrderData({
       ...orderData,
       [name]: value,
     });
   };
 
-  const {
-    data: {
-      makingAnOrder,
-      form: { firstName, lastName, address, quantity, sum, order },
-      errors: { length, onlyLetters, characters },
-    },
-  } = useContext(LanguageContext);
-
   const lettersRegex = /^[a-zA-Zа-яА-Я]+$/;
 
+  // Обработка формы отправки заказа
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Убнуляем ошибки ввода при отправки формы
     setOrderDataError({
       firstName: {
         error: false,
@@ -84,6 +91,7 @@ export const Order = ({
       },
     });
 
+    // Проверяем inputs на ошибки ввода. Обновляем состояние ошибки и сообщение ошибки
     if (orderData.firstName.trim().length < 3) {
       setOrderDataError((prevState) => ({
         ...prevState,
@@ -119,6 +127,7 @@ export const Order = ({
       return;
     }
 
+    // Если ошибок нет, показываем alert об успешном заказе
     setShowAlert(true);
     navigate('/');
 
@@ -126,6 +135,7 @@ export const Order = ({
       setShowAlert(false);
     }, 1300);
 
+    // Удаляем сохраненные товары из корзины (store) и localStorage
     dispatch(clearBasket());
   };
 
@@ -133,7 +143,6 @@ export const Order = ({
     <ThemeProvider theme={theme}>
       <section>
         <h2 className={style.title}>{makingAnOrder}</h2>
-
         <form onSubmit={handleSubmit}>
           <div className={style.order}>
             <div className={style.order__wrapper}>

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { LanguageContext, LanguageKey } from '@context/LanguageContext';
+
 import globe from '@assets/icons/interface_icons/globe.svg';
 import telegram from '@assets/icons/social_icons/telegram.svg';
 import vk from '@assets/icons/social_icons/vk.svg';
 import whatsapp from '@assets/icons/social_icons/whatsapp.svg';
+
 import style from './Footer.module.scss';
-import { useContext } from 'react';
-import { LanguageContext, LanguageKey } from '@context/LanguageContext';
 
 export const Footer = () => {
   const { setLanguage, language } = useContext(LanguageContext);

@@ -1,21 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
-import style from './Modal.module.scss';
+import { RootState } from '@redux/store';
 import {
   handlerModalStatus,
   setHeadphoneWithAddInfo,
 } from '@redux/productSlice';
-import { RootState } from '@redux/store';
+
 import { HeadphoneCard } from '@components/HeadphoneCard/HeadphoneCard';
+
+import style from './Modal.module.scss';
 
 export const Modal = () => {
   const dispatch = useDispatch();
 
   const isModalOpen = useSelector(
-    (state: RootState) => state.basket.isModalOpen
+    (state: RootState) => state.product.isModalOpen
   );
 
   const headphoneWithAddInfo = useSelector(
-    (state: RootState) => state.basket.headphoneWithAddInfo
+    (state: RootState) => state.product.headphoneWithAddInfo
   );
 
   const classOverlay = isModalOpen

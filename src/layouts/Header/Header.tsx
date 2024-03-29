@@ -1,16 +1,18 @@
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
-import { Link } from 'react-router-dom';
+
 import favorite from '@assets/icons/interface_icons/favorite.svg';
 import basket from '@assets/icons/interface_icons/basket.svg';
+
 import style from './Header.module.scss';
 
 export const Header = () => {
   const count = useSelector(
-    (state: RootState) => state.basket.countProductsInBasket
+    (state: RootState) => state.product.countProductsInBasket
   );
 
-  const countLike = useSelector((state: RootState) => state.basket.countLike);
+  const countLike = useSelector((state: RootState) => state.product.countLike);
 
   return (
     <header className={style.navigation}>

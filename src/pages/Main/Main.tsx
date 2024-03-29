@@ -1,19 +1,20 @@
-import { useSelector } from 'react-redux';
-
-import style from './Main.module.scss';
-import { RootState } from '@redux/store';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 import { LanguageContext } from '@context/LanguageContext';
+
 import { HeadphoneCard } from '@components/HeadphoneCard/HeadphoneCard';
 
-export const Main = () => {
-  const products = useSelector((state: RootState) => state.basket.products);
-  const wiredHeadphonesData = products.slice(0, 6);
-  const wirelessHeadphonesData = products.slice(6);
+import style from './Main.module.scss';
 
+export const Main = () => {
   const {
     data: { headphones, wirelessHeadphones },
   } = useContext(LanguageContext);
+
+  const products = useSelector((state: RootState) => state.product.products);
+  const wiredHeadphonesData = products.slice(0, 6);
+  const wirelessHeadphonesData = products.slice(6);
 
   return (
     <>

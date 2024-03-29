@@ -1,18 +1,21 @@
-import { Headphone } from '@type/interfaces/product.interface';
-import star from '@assets/icons/interface_icons/star.svg';
-import like from '@assets/icons/interface_icons/favorite_like.svg';
-import dislike from '@assets/icons/interface_icons/favorite_dislike.svg';
-import style from './HeadphoneCard.module.scss';
-import { LanguageContext } from '@context/LanguageContext';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@redux/store';
 import {
   addProduct,
   handlerModalStatus,
   setHeadphoneWithAddInfo,
   toggleLikeStatus,
 } from '@redux/productSlice';
-import { RootState } from '@redux/store';
+import { LanguageContext } from '@context/LanguageContext';
+
+import { Headphone } from '@type/interfaces/product.interface';
+
+import star from '@assets/icons/interface_icons/star.svg';
+import like from '@assets/icons/interface_icons/favorite_like.svg';
+import dislike from '@assets/icons/interface_icons/favorite_dislike.svg';
+
+import style from './HeadphoneCard.module.scss';
 
 export const HeadphoneCard = ({
   headphoneData,
@@ -24,12 +27,9 @@ export const HeadphoneCard = ({
   } = useContext(LanguageContext);
 
   const dispatch = useDispatch();
-  const isModalOpen = useSelector(
-    (state: RootState) => state.basket.isModalOpen
-  );
 
-  const headphoneWithAddInfo = useSelector(
-    (state: RootState) => state.basket.headphoneWithAddInfo
+  const isModalOpen = useSelector(
+    (state: RootState) => state.product.isModalOpen
   );
 
   return (
@@ -69,32 +69,31 @@ export const HeadphoneCard = ({
                   </div>
                 </div>
               )}
-              {headphoneWithAddInfo.length !== 1 && (
-                <div className={style.description__line}>
-                  <div className={style.wrapper__rate}>
-                    <img src={star} alt="star" />
-                    <div className={style.description__rate}>{item.rate}</div>
-                  </div>
-                  <div className={style.wrapper__button}>
-                    <img
-                      src={item.liked ? like : dislike}
-                      alt="favorite"
-                      className={style.like}
-                      onClick={() => {
-                        dispatch(toggleLikeStatus(item));
-                      }}
-                    />
-                    <div
-                      className={style.description__button}
-                      onClick={() => {
-                        dispatch(addProduct(item));
-                      }}
-                    >
-                      {buy}
-                    </div>
+
+              <div className={style.description__line}>
+                <div className={style.wrapper__rate}>
+                  <img src={star} alt="star" />
+                  <div className={style.description__rate}>{item.rate}</div>
+                </div>
+                <div className={style.wrapper__button}>
+                  <img
+                    src={item.liked ? like : dislike}
+                    alt="favorite"
+                    className={style.like}
+                    onClick={() => {
+                      dispatch(toggleLikeStatus(item));
+                    }}
+                  />
+                  <div
+                    className={style.description__button}
+                    onClick={() => {
+                      dispatch(addProduct(item));
+                    }}
+                  >
+                    {buy}
                   </div>
                 </div>
-              )}
+              </div>
             </li>
           </ul>
         </li>

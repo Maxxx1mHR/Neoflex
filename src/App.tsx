@@ -1,29 +1,39 @@
-import { Header } from '@layouts/Header/Header';
-import { Main } from '@pages/Main/Main';
-import { Favorite } from '@pages/Favorite/Favorite';
-import { Basket } from '@pages/Basket/Basket';
-import { Footer } from '@layouts/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.scss';
-import { Modal } from '@components/Modal/Modal';
 import { useContext, useEffect, useState } from 'react';
-import { Order } from '@pages/Order/Order';
-import { Alert } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
-import { LanguageContext } from '@context/LanguageContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import {
   handlerModalStatus,
   setHeadphoneWithAddInfo,
 } from '@redux/productSlice';
+import { LanguageContext } from '@context/LanguageContext';
+
+import { Header } from '@layouts/Header/Header';
+import { Footer } from '@layouts/Footer/Footer';
+import { Main } from '@pages/Main/Main';
+import { Favorite } from '@pages/Favorite/Favorite';
+import { Basket } from '@pages/Basket/Basket';
+import { Order } from '@pages/Order/Order';
+import { Modal } from '@components/Modal/Modal';
+
+import { Alert } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
+
+import './App.scss';
 
 export const App = () => {
-  const isModalOpen = useSelector(
-    (state: RootState) => state.basket.isModalOpen
-  );
-  const dispatch = useDispatch();
+  const {
+    data: {
+      alert: { successful },
+    },
+  } = useContext(LanguageContext);
 
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector(
+    (state: RootState) => state.product.isModalOpen
+  );
+
+  // Еффект для закрытия модального окна на ESC.
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isModalOpen) {
@@ -31,21 +41,13 @@ export const App = () => {
         dispatch(setHeadphoneWithAddInfo([]));
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
 
   const [showAlert, setShowAlert] = useState(false);
-
-  const {
-    data: {
-      alert: { successful },
-    },
-  } = useContext(LanguageContext);
 
   return (
     <>

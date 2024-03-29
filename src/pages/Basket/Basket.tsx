@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@redux/store';
 import {
@@ -5,23 +7,34 @@ import {
   decreaseProductQuantity,
   removeProduct,
 } from '@redux/productSlice';
+import { LanguageContext } from '@context/LanguageContext';
+
 import { Headphone } from '@type/interfaces/product.interface';
+
 import increase from '@assets/icons/interface_icons/increase.svg';
 import decrease from '@assets/icons/interface_icons/decrease.svg';
 import trash from '@assets/icons/interface_icons/trash.svg';
+
 import style from './Basket.module.scss';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { LanguageContext } from '@context/LanguageContext';
 
 export const Basket = () => {
-  const basketData = useSelector((state: RootState) => state.basket.basketList);
-
-  const count = useSelector(
-    (state: RootState) => state.basket.countProductsInBasket
-  );
+  const {
+    data: { basket, total, placeAnOrder },
+  } = useContext(LanguageContext);
 
   const dispatch = useDispatch();
+
+  const basketData = useSelector(
+    (state: RootState) => state.product.basketList
+  );
+
+  const count = useSelector(
+    (state: RootState) => state.product.countProductsInBasket
+  );
+
+  const totalBasketSum = useSelector(
+    (state: RootState) => state.product.totalBasketSum
+  );
 
   const increaseCountProduct = (headphone: Headphone) => {
     dispatch(increaseProductQuantity(headphone));
@@ -34,14 +47,6 @@ export const Basket = () => {
   const removeProductFromBasket = (headphone: Headphone) => {
     dispatch(removeProduct(headphone));
   };
-
-  const totalBasketSum = useSelector(
-    (state: RootState) => state.basket.totalBasketSum
-  );
-
-  const {
-    data: { basket, total, placeAnOrder },
-  } = useContext(LanguageContext);
 
   return (
     <section>
