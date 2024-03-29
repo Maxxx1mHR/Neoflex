@@ -60,6 +60,7 @@
 
 .language {
   @include font($size: 1.5rem, $weight: 500, $color: $color-dark-grey);
+  @extend %animation-scale;
 }
 
 .active {

@@ -7,6 +7,8 @@ import dislike from '@assets/icons/interface_icons/favorite_dislike.svg';
 
 import style from './Main.module.scss';
 import { RootState } from '@redux/store';
+import { useContext } from 'react';
+import { LanguageContext } from '@context/LanguageContext';
 
 export const Main = ({
   setHeadphoneWithAddInfo,
@@ -17,8 +19,8 @@ export const Main = ({
 }) => {
   let products = useSelector((state: RootState) => state.basket.products);
 
-  const wiredHeadphones = products.slice(0, 6);
-  const wirelessHeadphones = products.slice(6);
+  const wiredHeadphonesData = products.slice(0, 6);
+  const wirelessHeadphonesData = products.slice(6);
 
   const dispatch = useDispatch();
 
@@ -26,12 +28,16 @@ export const Main = ({
     dispatch(addProduct(headphone));
   };
 
+  const {
+    data: { headphones, wirelessHeadphones, buy },
+  } = useContext(LanguageContext);
+
   return (
     <>
       <section className={style.headphones__wired}>
-        <h2 className={style.title}>Наушники</h2>
+        <h2 className={style.title}>{headphones}</h2>
         <ul className={style.headphones__list}>
-          {wiredHeadphones.map((item) => (
+          {wiredHeadphonesData.map((item) => (
             <li className={style.headphones__item} key={item.id}>
               <div className={style.wrapper__image}>
                 <img
@@ -77,7 +83,7 @@ export const Main = ({
                         className={style.description__button}
                         onClick={() => addProductToBasket(item)}
                       >
-                        Купить
+                        {buy}
                       </div>
                     </div>
                   </div>
@@ -88,9 +94,9 @@ export const Main = ({
         </ul>
       </section>
       <section className={style.headphones__wireless}>
-        <h2 className={style.title}>Беспроводные наушники</h2>
+        <h2 className={style.title}>{wirelessHeadphones}</h2>
         <ul className={style.headphones__list}>
-          {wirelessHeadphones.map((item) => (
+          {wirelessHeadphonesData.map((item) => (
             <li className={style.headphones__item} key={item.id}>
               <div className={style.wrapper__image}>
                 <img
@@ -136,7 +142,7 @@ export const Main = ({
                         className={style.description__button}
                         onClick={() => addProductToBasket(item)}
                       >
-                        Купить
+                        {buy}
                       </div>
                     </div>
                   </div>

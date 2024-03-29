@@ -4,6 +4,8 @@ import styles from '../Main/Main.module.scss';
 import { Headphone } from '@type/interfaces/product.interface';
 import { addProduct } from '@redux/productSlice';
 import star from '@assets/icons/interface_icons/star.svg';
+import { useContext } from 'react';
+import { LanguageContext } from '@context/LanguageContext';
 
 export const Modal = ({
   headphoneWithAddInfo,
@@ -24,6 +26,10 @@ export const Modal = ({
   const classOverlay = activeModal
     ? `${style.modal__wrapper} ${style.active}`
     : `${style.modal__wrapper}`;
+
+  const {
+    data: { buy, headphoneDescription },
+  } = useContext(LanguageContext);
 
   return (
     <div className={classOverlay}>
@@ -60,7 +66,7 @@ export const Modal = ({
                     </div>
                     <div className={styles.description__line}>
                       <div className={styles.description__additionalInfo}>
-                        {item.description}
+                        {headphoneDescription[item.id].description}
                       </div>
                     </div>
                     <div className={styles.description__line}>
@@ -74,7 +80,7 @@ export const Modal = ({
                         className={styles.description__button}
                         onClick={() => addProductToBasket(item)}
                       >
-                        Купить
+                        {buy}
                       </div>
                     </div>
                   </li>

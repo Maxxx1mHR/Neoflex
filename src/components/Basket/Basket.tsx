@@ -11,9 +11,11 @@ import decrease from '@assets/icons/interface_icons/decrease.svg';
 import trash from '@assets/icons/interface_icons/trash.svg';
 import style from './Basket.module.scss';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { LanguageContext } from '@context/LanguageContext';
 
 export const Basket = () => {
-  const basket = useSelector((state: RootState) => state.basket.basketList);
+  const basketData = useSelector((state: RootState) => state.basket.basketList);
 
   const count = useSelector(
     (state: RootState) => state.basket.countProductsInBasket
@@ -37,12 +39,16 @@ export const Basket = () => {
     (state: RootState) => state.basket.totalBasketSum
   );
 
+  const {
+    data: { basket, total, placeAnOrder },
+  } = useContext(LanguageContext);
+
   return (
     <section>
-      <h2 className={style.title}>Корзина</h2>
+      <h2 className={style.title}>{basket}</h2>
       <div className={style.wrapper__basket}>
         <ul className={style.basket__list}>
-          {Object.values(basket).map((item) => (
+          {Object.values(basketData).map((item) => (
             <li className={style.basket__item} key={item.id}>
               <div className={style.wrapper__image}>
                 <img
@@ -90,12 +96,12 @@ export const Basket = () => {
         </ul>
         <div className={style.order}>
           <div className={style.wrapper__total}>
-            <div className={style.total}>итого</div>
+            <div className={style.total}>{total}</div>
             <div className={style.sum}>₽ {totalBasketSum}</div>
           </div>
           <Link to="order" className={count ? '' : style.button__disabled}>
             <button className={style.button__order}>
-              <span>Перейти к оформлению</span>
+              <span>{placeAnOrder}</span>
             </button>
           </Link>
         </div>

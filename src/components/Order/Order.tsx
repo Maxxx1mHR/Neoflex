@@ -4,9 +4,10 @@ import { ThemeProvider } from '@mui/material';
 import { theme } from '@utils/Theme.tsx';
 import { RootState } from '@redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { clearBasket } from '@redux/productSlice';
+import { LanguageContext } from '@context/LanguageContext';
 
 export const Order = ({
   setShowAlert,
@@ -55,6 +56,14 @@ export const Order = ({
     });
   };
 
+  const {
+    data: {
+      makingAnOrder,
+      form: { firstName, lastName, address, quantity, sum, order },
+      errors: { length, onlyLetters, characters },
+    },
+  } = useContext(LanguageContext);
+
   const lettersRegex = /^[a-zA-Zа-яА-Я]+$/;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -78,26 +87,26 @@ export const Order = ({
     if (orderData.firstName.trim().length < 3) {
       setOrderDataError((prevState) => ({
         ...prevState,
-        firstName: { error: true, message: 'Минимум 3 буквы' },
+        firstName: { error: true, message: length },
       }));
       return;
     } else if (!lettersRegex.test(orderData.firstName)) {
       setOrderDataError((prevState) => ({
         ...prevState,
-        firstName: { error: true, message: 'Только буквы' },
+        firstName: { error: true, message: onlyLetters },
       }));
       return;
     }
     if (orderData.lastName.trim().length < 3) {
       setOrderDataError((prevState) => ({
         ...prevState,
-        lastName: { error: true, message: 'Минимум 3 буквы' },
+        lastName: { error: true, message: length },
       }));
       return;
     } else if (!lettersRegex.test(orderData.lastName)) {
       setOrderDataError((prevState) => ({
         ...prevState,
-        lastName: { error: true, message: 'Только буквы' },
+        lastName: { error: true, message: onlyLetters },
       }));
       return;
     }
@@ -105,7 +114,7 @@ export const Order = ({
     if (orderData.address.trim().length < 10) {
       setOrderDataError((prevState) => ({
         ...prevState,
-        address: { error: true, message: 'Минимум 10 символов' },
+        address: { error: true, message: characters },
       }));
       return;
     }
@@ -123,7 +132,7 @@ export const Order = ({
   return (
     <ThemeProvider theme={theme}>
       <section>
-        <h2 className={style.title}>Офрмление заказа</h2>
+        <h2 className={style.title}>{makingAnOrder}</h2>
 
         <form onSubmit={handleSubmit}>
           <div className={style.order}>
@@ -133,7 +142,7 @@ export const Order = ({
                   error={orderDataError.firstName.error}
                   name="firstName"
                   id="outlined-basic"
-                  label="Имя"
+                  label={firstName}
                   variant="outlined"
                   size="small"
                   helperText={
@@ -146,7 +155,7 @@ export const Order = ({
                   error={orderDataError.lastName.error}
                   name="lastName"
                   id="outlined-basic"
-                  label="Фамилия"
+                  label={lastName}
                   variant="outlined"
                   size="small"
                   helperText={
@@ -161,7 +170,7 @@ export const Order = ({
                   error={orderDataError.address.error}
                   name="address"
                   id="outlined-basic"
-                  label="Адрес доставки"
+                  label={address}
                   variant="outlined"
                   size="small"
                   fullWidth
@@ -173,8 +182,12 @@ export const Order = ({
                 />
               </div>
               <div className={style.input__lineInfo}>
-                <span className={style.total}>Количество: {count}</span>
-                <span className={style.sum}>Сумма: {totalBasketSum} ₽</span>
+                <span className={style.total}>
+                  {quantity}: {count}
+                </span>
+                <span className={style.sum}>
+                  {sum}: {totalBasketSum} ₽
+                </span>
               </div>
             </div>
             <button
@@ -185,7 +198,7 @@ export const Order = ({
                   : `${style.button__buy} ${style.button__disabled}`
               }
             >
-              <span>Заказать</span>
+              <span>{order}</span>
             </button>
           </div>
         </form>

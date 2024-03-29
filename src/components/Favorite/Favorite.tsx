@@ -7,6 +7,8 @@ import like from '@assets/icons/interface_icons/favorite_like.svg';
 import dislike from '@assets/icons/interface_icons/favorite_dislike.svg';
 import { addProduct, toggleLikeStatus } from '@redux/productSlice';
 import { Headphone } from '@type/interfaces/product.interface';
+import { useContext } from 'react';
+import { LanguageContext } from '@context/LanguageContext';
 
 export const Favorite = () => {
   const dispatch = useDispatch();
@@ -17,9 +19,13 @@ export const Favorite = () => {
 
   const favorite = useSelector((state: RootState) => state.basket.favoriteList);
 
+  const {
+    data: { favorites, buy },
+  } = useContext(LanguageContext);
+
   return (
     <section>
-      <h2 className={style.title}>Избранное</h2>
+      <h2 className={style.title}>{favorites}</h2>
       <ul className={styles.headphones__list}>
         {Object.values(favorite).map((item) => (
           <li className={styles.headphones__item} key={item.id}>
@@ -64,7 +70,7 @@ export const Favorite = () => {
                       className={styles.description__button}
                       onClick={() => addProductToBasket(item)}
                     >
-                      Купить
+                      {buy}
                     </div>
                   </div>
                 </div>

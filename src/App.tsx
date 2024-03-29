@@ -7,11 +7,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Modal } from '@components/Modal/Modal';
 import { Headphone } from '@type/interfaces/product.interface';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Order } from '@components/Order/Order';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
-import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
+import { LanguageContext } from '@context/LanguageContext';
 
 export const App = () => {
   const [headphoneWithAddInfo, setHeadphoneWithAddInfo] = useState<Headphone[]>(
@@ -41,8 +41,14 @@ export const App = () => {
 
   const [showAlert, setShowAlert] = useState(false);
 
+  const {
+    data: {
+      alert: { successful },
+    },
+  } = useContext(LanguageContext);
+
   return (
-    <ErrorBoundary>
+    <>
       <div className="container">
         <BrowserRouter>
           <Header />
@@ -84,9 +90,9 @@ export const App = () => {
             transform: 'translateX(-50%)',
           }}
         >
-          <span style={{ fontSize: '2rem' }}>Ваш заказ успешно оформлен!</span>
+          <span style={{ fontSize: '2rem' }}>{successful}</span>
         </Alert>
       )}
-    </ErrorBoundary>
+    </>
   );
 };
