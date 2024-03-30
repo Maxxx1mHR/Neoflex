@@ -3,7 +3,6 @@
 @import '@styles/abstract/placeholders';
 
 .headphones__wired {
-  margin-bottom: 2.8rem;
   @include media-desktop {
     padding: 0 1rem;
   }

@@ -9,6 +9,7 @@ import {
 } from '@redux/productSlice';
 import { LanguageContext } from '@context/LanguageContext';
 
+import { NothingSelected } from '@components/NothingSelected/NothingSelected';
 import { Headphone } from '@type/interfaces/product.interface';
 
 import increase from '@assets/icons/interface_icons/increase.svg';
@@ -52,53 +53,61 @@ export const Basket = () => {
     <section>
       <h2 className={style.title}>{basket}</h2>
       <div className={style.wrapper__basket}>
-        <ul className={style.basket__list}>
-          {Object.values(basketData).map((item) => (
-            <li className={style.basket__item} key={item.id}>
-              <div className={style.wrapper__image}>
-                <img
-                  src={item.img}
-                  alt="headphone image"
-                  className={style.headphone__image}
-                />
-                <div className={style.wrapper__quantity}>
+        {Object.values(basketData).length ? (
+          <ul className={style.basket__list}>
+            {Object.values(basketData).map((item) => (
+              <li className={style.basket__item} key={item.id}>
+                <div className={style.wrapper__image}>
                   <img
-                    src={decrease}
-                    alt="decrease"
-                    className={style.button__quantity}
-                    onClick={() => decreaseCountProduct(item)}
+                    src={item.img}
+                    alt="headphone image"
+                    className={style.headphone__image}
                   />
-                  <div className={style.quantity}>{item.quantity}</div>
-                  <img
-                    src={increase}
-                    alt="increase"
-                    className={style.button__quantity}
-                    onClick={() => increaseCountProduct(item)}
-                  />
+                  <div className={style.wrapper__quantity}>
+                    <img
+                      src={decrease}
+                      alt="decrease"
+                      className={style.button__quantity}
+                      onClick={() => decreaseCountProduct(item)}
+                    />
+                    <div className={style.quantity}>{item.quantity}</div>
+                    <img
+                      src={increase}
+                      alt="increase"
+                      className={style.button__quantity}
+                      onClick={() => increaseCountProduct(item)}
+                    />
+                  </div>
                 </div>
-              </div>
-              <ul className={style.description__list}>
-                <li className={style.description__item}>
-                  <div className={style.wrapper__description}>
-                    <div className={style.description__title}>{item.title}</div>
-                    <div className={style.wrapper__price}>
-                      <div className={style.description__price_new}>
-                        {item.price} ₽
+                <ul className={style.description__list}>
+                  <li className={style.description__item}>
+                    <div className={style.wrapper__description}>
+                      <div className={style.description__title}>
+                        {item.title}
+                      </div>
+                      <div className={style.wrapper__price}>
+                        <div className={style.description__price_new}>
+                          {item.price} ₽
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-              <img
-                src={trash}
-                alt="trash"
-                className={style.trash}
-                onClick={() => removeProductFromBasket(item)}
-              />
-              <div className={style.price}>{item.price * item.quantity} ₽</div>
-            </li>
-          ))}
-        </ul>
+                  </li>
+                </ul>
+                <img
+                  src={trash}
+                  alt="trash"
+                  className={style.trash}
+                  onClick={() => removeProductFromBasket(item)}
+                />
+                <div className={style.price}>
+                  {item.price * item.quantity} ₽
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <NothingSelected />
+        )}
         <div className={style.order}>
           <div className={style.wrapper__total}>
             <div className={style.total}>{total}</div>

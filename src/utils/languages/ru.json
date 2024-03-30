@@ -9,6 +9,7 @@
   "total": "итого",
   "placeAnOrder": "Перейти к оформлению",
   "makingAnOrder": "Оформление заказа",
+  "nothingSelected": "Ничего не выбрано",
   "form": {
     "firstName": "Имя",
     "lastName": "Фамилия",

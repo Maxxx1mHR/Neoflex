@@ -9,6 +9,7 @@
   "total": "Total",
   "placeAnOrder": "place an order",
   "makingAnOrder": "Making an order",
+  "nothingSelected": "Nothing Selected",
   "form": {
     "firstName": "Name",
     "lastName": "Surname",

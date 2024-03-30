@@ -1,0 +1,16 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+
+.wrapper {
+  text-align: center;
+}
+
+.title {
+  @include font($size: 2rem, $color: $color-text);
+  margin-bottom: 2rem;
+}
+
+.image {
+  width: 100%;
+  max-width: 42rem;
+}

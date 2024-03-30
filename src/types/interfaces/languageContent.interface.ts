@@ -9,6 +9,7 @@ export interface LanguageContent {
   total: string;
   placeAnOrder: string;
   makingAnOrder: string;
+  nothingSelected: string;
   form: {
     [key: string]: string;
   };
