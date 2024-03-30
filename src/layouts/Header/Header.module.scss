@@ -1,0 +1,39 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  margin-bottom: 2.8rem;
+  @include media-desktop {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 9.2rem;
+  margin-right: 3.1rem;
+}
+
+.count {
+  position: absolute;
+  right: -10px;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background-color: $color-text;
+  color: $color-white;
+}
+
+.link {
+  position: relative;
+  @extend %animation-scale;
+}

@@ -1,0 +1,40 @@
+@import '@styles/abstract/constants';
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__wrapper {
+  visibility: hidden;
+  opacity: 0;
+}
+.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__content {
+  border-radius: 2rem;
+  padding: 2rem;
+  background-color: $color-white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}

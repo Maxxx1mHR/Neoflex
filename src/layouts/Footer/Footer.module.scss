@@ -1,0 +1,74 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2.9rem 2.7rem 3.2rem 2.9rem;
+  border-radius: 3rem 3rem 0 0;
+  background-color: $color-white;
+  @include media-tablet {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style-type: none;
+  min-height: 8.3rem;
+  @include media-tablet {
+    align-items: center;
+    min-height: unset;
+  }
+}
+
+.footer__item {
+  @include media-tablet {
+    margin-bottom: 1rem;
+  }
+  span {
+    @include font($weight: 400);
+    position: relative;
+    @extend %animation-underline;
+  }
+}
+
+.footer__language {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 11rem;
+  @include media-tablet {
+    margin-bottom: 1rem;
+  }
+}
+
+.footer__social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 12rem;
+  a {
+    @extend %animation-scale;
+  }
+}
+
+.language {
+  @include font($size: 1.5rem, $weight: 500, $color: $color-dark-grey);
+  @extend %animation-scale;
+}
+
+.active {
+  color: $color-text;
+}
+
+.hide {
+  @include media-tablet {
+    display: none;
+  }
+}

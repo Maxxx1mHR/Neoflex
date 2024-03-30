@@ -1,0 +1,90 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
+
+.headphones__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 35rem));
+  justify-content: center;
+  gap: 3rem;
+  list-style-type: none;
+  margin-bottom: 2.8rem;
+}
+
+.headphones__item {
+  padding: 0rem 2rem 2.7rem 2rem;
+  border-radius: 3rem;
+  background-color: $color-white;
+}
+
+.wrapper__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30.6rem;
+}
+
+.headphone__image {
+  @extend %animation-scale;
+}
+
+.description__list {
+  list-style-type: none;
+}
+
+.description__title {
+  margin-bottom: 2.5rem;
+
+  @include font($color: $color-charcoal);
+}
+
+.wrapper__price {
+  position: relative;
+}
+
+.description__price_new {
+  @include font($color: $color-text);
+}
+
+.description__price_old {
+  position: absolute;
+  text-decoration: line-through;
+  @include font($size: 1.3rem, $color: $color-text-light);
+  left: 1rem;
+}
+
+.description__rate {
+  @include font($color: $color-dark-text);
+}
+
+.wrapper__button {
+  display: flex;
+  gap: 2rem;
+}
+
+.description__button {
+  position: relative;
+  @include font();
+  @extend %animation-underline;
+}
+
+.like {
+  @extend %animation-scale;
+}
+
+.description__line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper__rate {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.description__additionalInfo {
+  margin-bottom: 1rem;
+  text-align: justify;
+  @include font($size: 1.2rem, $weight: 400, $color: $color-charcoal);
+}

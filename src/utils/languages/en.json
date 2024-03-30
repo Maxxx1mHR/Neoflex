@@ -1,0 +1,59 @@
+{
+  "headphones": "Headphones",
+  "buy": "Buy",
+  "wirelessHeadphones": "Wireless headphones",
+  "favorites": "Favourites",
+  "basket": "Basket",
+  "contacts": "Contacts",
+  "termsOfService": "Terms of Service",
+  "total": "Total",
+  "placeAnOrder": "place an order",
+  "makingAnOrder": "Making an order",
+  "nothingSelected": "Nothing Selected",
+  "form": {
+    "firstName": "Name",
+    "lastName": "Surname",
+    "address": "Delivery Address",
+    "quantity": "Quantity",
+    "sum": "Sum",
+    "order": "Order"
+  },
+  "errors": {
+    "length": "Minimum of 3 letters",
+    "onlyLetters": "Only letters",
+    "characters": "Minimum of 10 characters"
+  },
+  "alert": {
+    "successful": "Your order successfully placed!"
+  },
+
+  "headphoneDescription": {
+    "1": {
+      "description": "Apple EarPods with 3.5mm Headphone Plug in-ear headphones connect to a sound source via a 3.5mm Jack cable. The model is equipped with speakers with a frequency range from 20 Hz to 20 kHz and a control panel with a microphone on the cable, which allows you to change the volume of songs and switch them by long pressing a button. The cable length is 1.2 m."
+    },
+    "2": {
+      "description": "Apple EarPods with 3.5mm Headphone Plug in-ear headphones connect to a sound source via a 3.5mm Jack cable. The model is equipped with speakers with a frequency range from 20 Hz to 20 kHz and a control panel with a microphone on the cable, which allows you to change the volume of songs and switch them by long pressing a button. The cable length is 1.2 m."
+    },
+    "3": {
+      "description": "Apple EarPods with 3.5mm Headphone Plug in-ear headphones connect to a sound source via a 3.5mm Jack cable. The model is equipped with speakers with a frequency range from 20 Hz to 20 kHz and a control panel with a microphone on the cable, which allows you to change the volume of songs and switch them by long pressing a button. The cable length is 1.2 m."
+    },
+    "4": {
+      "description": "Apple EarPods with 3.5mm Headphone Plug in-ear headphones connect to a sound source via a 3.5mm Jack cable. The model is equipped with speakers with a frequency range from 20 Hz to 20 kHz and a control panel with a microphone on the cable, which allows you to change the volume of songs and switch them by long pressing a button. The cable length is 1.2 m."
+    },
+    "5": {
+      "description": "Apple EarPods with 3.5mm Headphone Plug in-ear headphones connect to a sound source via a 3.5mm Jack cable. The model is equipped with speakers with a frequency range from 20 Hz to 20 kHz and a control panel with a microphone on the cable, which allows you to change the volume of songs and switch them by long pressing a button. The cable length is 1.2 m."
+    },
+    "6": {
+      "description": "Apple EarPods with 3.5mm Headphone Plug in-ear headphones connect to a sound source via a 3.5mm Jack cable. The model is equipped with speakers with a frequency range from 20 Hz to 20 kHz and a control panel with a microphone on the cable, which allows you to change the volume of songs and switch them by long pressing a button. The cable length is 1.2 m."
+    },
+    "7": {
+      "description": "Apple AirPods with Charging Case (MV7N2) headphones are synchronized with the sound source using the Bluetooth module version 5 with a range of up to 45 m. The headset provides quick access to the Siri voice assistant, supports live listening and fast charging in the case."
+    },
+    "8": {
+      "description": "Apple AirPods 3rd generation (MPNY3) headphones are a model in a white case with ergonomic earbuds, the shape of which ensures a comfortable fit. The standard of dust and moisture protection is IPX4. The device has an equalizer that allows you to change the playback settings. The built-in skin sensor guarantees fast switching on and off"
+    },
+    "9": {
+      "description": "AirPods Max completely changes the idea of full-size headphones. The driver developed by Apple is capable of playing high-definition audio. Every detail, from the headband to the ear pads, is designed for complete comfort. The advanced active noise reduction function blocks external noise, and the Transparent mode allows you to hear the world around you."
+    }
+  }
+}

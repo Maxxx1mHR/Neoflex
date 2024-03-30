@@ -1,0 +1,20 @@
+@import '@styles/abstract/constants';
+@import '@styles/abstract/mixins';
+@import '@styles/abstract/placeholders';
+
+.headphones__wired {
+  @include media-desktop {
+    padding: 0 1rem;
+  }
+}
+.headphones__wireless {
+  margin-bottom: 2rem;
+  @include media-desktop {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  margin-bottom: 2rem;
+  @include font($size: 2rem, $color: $color-dark-text);
+}

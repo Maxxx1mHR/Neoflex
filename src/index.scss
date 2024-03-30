@@ -1,0 +1,34 @@
+@import './styles/base/normalize';
+@import './styles/abstract/constants';
+@import './styles/abstract/mixins';
+@import './styles/abstract/placeholders';
+
+* {
+  font-size: 10px;
+}
+
+body {
+  background-color: $color-background;
+}
+
+.container {
+  max-width: 111rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+.logo {
+  text-transform: uppercase;
+  @include font($size: 2.5rem, $weight: 700, $color: $color-dark-grey);
+  @extend %animation-scale;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
